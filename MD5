@@ -1,0 +1,15 @@
+ca570c8982b79c0a3370d9e0a2b90621 *DESCRIPTION
+ddf1b5014431b26fd6f0709733ce1d3c *NAMESPACE
+0dc95e20c05a93e3675590dd93e4da6e *NEWS
+bdc3259079e83cedda8b70ffaaa81a01 *R/AAAA.R
+b1ac5038f4b5bb69d1de695330a2cbe8 *R/clhs-internal.R
+ec3388fe7376e77c275627a105f3f783 *R/clhs-raster.R
+574a31364c7f78b0232024521c92aaad *R/clhs-sp.R
+4c7d847be3b3e2ea19cd089f3a743c52 *R/clhs.R
+978f42fd8a4fc7e2338a932cabad5e28 *R/plot.R
+af96f36ea1b4a547d8debe7a8d596a56 *R/utils.R
+bac8da82381220394b39253a3c8cd6fe *inst/CITATION
+2c33edd14b21805293e33e50fa44a775 *man/cLHS_result.Rd
+8bdef8062f6c2afa6bb142f43a9bf0ee *man/clhs-package.Rd
+c99e37eefeb348278d70b0323821616c *man/clhs.Rd
+95160a56705ccba9e544851e64bcd236 *man/plot.cLHS_result.Rd
