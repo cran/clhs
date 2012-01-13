@@ -1,0 +1,7 @@
+import(utils, ggplot2, grid)
+importFrom(reshape2, melt)
+import(sp, raster)
+
+exportMethods(clhs)
+S3method(plot, cLHS_result)
+exportPattern("^[^\\.]")
