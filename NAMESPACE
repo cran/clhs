@@ -1,6 +1,34 @@
+importClassesFrom("sp",
+  "SpatialPointsDataFrame"
+)
+
 import(utils, ggplot2, grid)
-importFrom(reshape2, melt)
-import(sp, raster)
+
+importClassesFrom("raster",
+  "Raster"
+)
+
+importFrom(scales,
+  percent
+)
+
+importFrom(
+  plyr,
+    ddply,
+    dlply
+)
+
+importFrom(
+  raster, 
+    raster,
+    rasterToPoints,
+    stack
+)
+
+importFrom(
+  reshape2, 
+    melt
+)
 
 exportMethods(clhs)
 S3method(plot, cLHS_result)

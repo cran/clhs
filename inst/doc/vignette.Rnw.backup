@@ -1,0 +1,69 @@
+\documentclass{article}
+% \VignetteIndexEntry{Introduction to conditioned Latin hypercube sampling with the clhs package}
+
+\usepackage{graphicx}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{color}
+\usepackage{subfig}
+\usepackage{multirow}
+\usepackage{Sweave}
+
+\newcommand{\strong}[1]{{\normalfont\fontseries{b}\selectfont #1}}
+\let\pkg=\strong
+
+% \SweaveOpts{prefix.string=<directory>/<filename-prefix>}
+
+% \VignetteDepends{ggplot2,clhs}
+
+\setkeys{Gin}{width=0.9\textwidth}
+
+\title{Introduction to conditioned Latin hypercube sampling with the \tt{clhs} package}
+
+\author{
+Pierre Roudier\footnote{Landcare Research -- Manaaki Whenua, Private Bag 11052, Manawatu Mail Centre, Palmerston North 4442, New Zealand.
+{\tt roudierp@landcareresearch.co.nz}}
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+% \tableofcontents
+
+\section{A simple example}
+
+<<load_diamonds>>=
+data(diamonds, package = 'ggplot2')
+head(diamonds)
+nrow(diamonds)
+@
+
+<<simple_clhs, echo=TRUE, eval=TRUE>>=
+library(clhs)
+res <- clhs(diamonds, size = 100, progress = FALSE, iter = 2000)
+@
+
+\section{Plotting the results}
+
+If you want to report on the evolution of the objective function, or 
+
+<<process_clhs, echo=TRUE, eval=TRUE>>=
+res <- clhs(diamonds, size = 100, simple = FALSE, progress = FALSE, iter = 2000)
+@
+
+\begin{figure}
+\centering
+<<plot_clhs_1, echo=FALSE, fig=TRUE, height=7, width=7>>=
+plot(res)
+@
+\end{figure}
+
+\begin{figure}
+\centering
+<<plot_clhs_2, echo=FALSE, fig=TRUE, height=7, width=20>>=
+plot(res, modes = c('obj', 'box'))
+@
+\end{figure}
+
+\end{document}
