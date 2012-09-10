@@ -1,8 +1,8 @@
 Package: clhs
 Type: Package
 Title: Conditioned Latin Hypercube Sampling
-Version: 0.5-0
-Date: 2012-06-06
+Version: 0.5-1
+Date: 2012-09-10
 Author: Pierre Roudier
 Maintainer: Pierre Roudier <roudierp@landcareresearch.co.nz>
 Description: This package implements the conditioned Latin hypercube
@@ -14,8 +14,9 @@ Description: This package implements the conditioned Latin hypercube
 Depends: R (>= 2.9.0)
 Imports: utils, methods, grid, ggplot2, sp, raster, reshape2, plyr,
         scales
+Suggests: ggplot2
 License: GPL (>= 2)
 LazyLoad: yes
-Packaged: 2012-06-07 05:48:14 UTC; roudierp
+Packaged: 2012-09-10 02:30:55 UTC; roudierp
 Repository: CRAN
-Date/Publication: 2012-06-07 07:08:31
+Date/Publication: 2012-09-10 09:37:29
