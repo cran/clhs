@@ -3,6 +3,7 @@ importClassesFrom("sp",
 )
 
 import(utils, 
+  methods,
   ggplot2, 
   grid
 )
@@ -17,6 +18,7 @@ importFrom(scales,
 
 importFrom(
   plyr,
+    alply,
     ddply,
     dlply
 )
