@@ -10,6 +10,7 @@ set.seed(42)
 ### code chunk number 2: load_diamonds
 ###################################################
 data(diamonds, package = 'ggplot2')
+diamonds <- data.frame(diamonds)
 head(diamonds)
 nrow(diamonds)
 
