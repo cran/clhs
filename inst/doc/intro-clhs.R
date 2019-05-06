@@ -1,4 +1,5 @@
 ## ----make_things_reproducible, echo=FALSE, eval=TRUE---------------------
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(42)
 
 ## ----load_diamonds-------------------------------------------------------
@@ -13,6 +14,7 @@ res <- clhs(diamonds, size = 100, progress = FALSE, iter = 1000)
 str(res)
 
 ## ----existing_samples, echo=TRUE, eval=TRUE------------------------------
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(1)
 
 candidates_samples <- data.frame(
