@@ -1,19 +1,19 @@
-## ----make_things_reproducible, echo=FALSE, eval=TRUE---------------------
+## ----make_things_reproducible, echo=FALSE, eval=TRUE--------------------------
 suppressWarnings(RNGversion("3.5.0"))
 set.seed(42)
 
-## ----load_diamonds-------------------------------------------------------
+## ----load_diamonds------------------------------------------------------------
 data(diamonds, package = 'ggplot2')
 diamonds <- data.frame(diamonds)
 head(diamonds)
 nrow(diamonds)
 
-## ----simple_clhs, echo=TRUE, eval=TRUE-----------------------------------
+## ----simple_clhs, echo=TRUE, eval=TRUE----------------------------------------
 library(clhs)
 res <- clhs(diamonds, size = 100, progress = FALSE, iter = 1000)
 str(res)
 
-## ----existing_samples, echo=TRUE, eval=TRUE------------------------------
+## ----existing_samples, echo=TRUE, eval=TRUE-----------------------------------
 suppressWarnings(RNGversion("3.5.0"))
 set.seed(1)
 
@@ -35,7 +35,7 @@ res <- clhs(
   progress = FALSE
 )
 
-## ----plot_mandatory_1, echo=FALSE, fig=TRUE, fig.height=6, fig.width=6----
+## ----plot_mandatory_1, echo=FALSE, fig=TRUE, fig.height=6, fig.width=6--------
 suppressPackageStartupMessages(library(ggplot2))
 
 res_df <- rbind(existing_samples, candidates_samples)
@@ -51,7 +51,7 @@ p0 <- ggplot(data = res_df, mapping = aes(x = x, y = y)) +
 
 print(p0)
 
-## ----plot_mandatory_2, echo=FALSE, fig=TRUE, fig.height=6, fig.width=6----
+## ----plot_mandatory_2, echo=FALSE, fig=TRUE, fig.height=6, fig.width=6--------
 p1 <- ggplot(data = res_df, mapping = aes(x = x, y = y)) +
   geom_point(aes(colour = selected_sample, size = selected_sample, shape = mandatory_sample)) +
   scale_colour_manual(values = c("grey70", "red")) +
@@ -60,15 +60,15 @@ p1 <- ggplot(data = res_df, mapping = aes(x = x, y = y)) +
 
 print(p1)
 
-## ----cost_clhs, echo=TRUE, eval=TRUE-------------------------------------
+## ----cost_clhs, echo=TRUE, eval=TRUE------------------------------------------
 diamonds$cost <- runif(nrow(diamonds))
 res_cost <- clhs(diamonds, size = 100, progress = FALSE, iter = 1000, cost = 'cost')
 
-## ----plot_clhs_1, echo=TRUE, fig=TRUE, fig.height=8, fig.width=8---------
+## ----plot_clhs_1, echo=TRUE, fig=TRUE, fig.height=8, fig.width=8--------------
 res <- clhs(diamonds, size = 100, simple = FALSE, progress = FALSE, iter = 1000)
 plot(res)
 
-## ----plot_clhs_3, echo=TRUE, fig=TRUE, fig.height=8, fig.width=12--------
+## ----plot_clhs_3, echo=TRUE, fig=TRUE, fig.height=8, fig.width=12-------------
 res_cost <- clhs(diamonds, size = 100, progress = FALSE, iter = 1000, cost = 'cost', simple = FALSE)
 plot(res_cost, c('obj', 'cost'))
 
