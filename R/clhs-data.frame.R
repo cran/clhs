@@ -3,6 +3,8 @@
 #' @method clhs data.frame
 #' @importFrom stats quantile runif 
 #' @importFrom utils txtProgressBar setTxtProgressBar
+#' @importFrom plyr alply
+#' @noRd
 #' @export
 clhs.data.frame <- function(
   x, # data.frame
@@ -18,7 +20,9 @@ clhs.data.frame <- function(
   length.cycle = 10, # Number of cycles done at each constant temperature value
   simple = TRUE, # only return selected indices (if false, return a more complex S3 object)
   progress = TRUE, # progress bar,
-  track = NULL # just to have the cost computed without having it guiding the process
+  track = NULL, # just to have the cost computed without having it guiding the process
+  use.coords = FALSE, # ignored by the `data.frame` method.
+  ... # ignored
 ) {
   
   # Temperature decrease rate should be < 1
@@ -131,7 +135,8 @@ clhs.data.frame <- function(
   
   obj <- res$obj # value of the objective function
   delta_obj_continuous <- res$delta_obj_continuous
-  
+  sample.weights <- res$sample.weights
+                           
   if (cost_mode) {
     # (initial) operational cost
     op_cost <- sum(cost[i_sampled, ])
@@ -179,8 +184,10 @@ clhs.data.frame <- function(
     }
     else {
       # remove the worse sampled & resample
-      worse <- max(delta_obj_continuous[!i_sampled %in% include])
-      i_worse <- which(delta_obj_continuous[!i_sampled %in% include] == worse)
+      sample.weights <- sample.weights + 1 ## to ensure all weights are positive
+      sample.weights[i_sampled %in% include] <- 0 ## to ensure we don't select any include samples as the worst
+      worse <- max(sample.weights)
+      i_worse <- which(sample.weights == worse)
       # If there's more than one worse candidate, we pick one at random
       if (length(i_worse) > 1) i_worse <- sample(i_worse, size = 1)
       
@@ -206,6 +213,7 @@ clhs.data.frame <- function(
     
     obj <- res$obj
     delta_obj_continuous <- res$delta_obj_continuous
+    sample.weights <- res$sample.weights
     # Compare with previous iterations
     delta_obj <- obj - previous$obj
     metropolis <- exp(-1*delta_obj/temp) #+ runif(1)*temp
@@ -265,7 +273,7 @@ clhs.data.frame <- function(
   if (progress) close(pb)
   
   if (n_factor > 0) {
-    sampled_data <- data.frame(data_continuous_sampled, data_factor_sampled, stringsAsFactors = TRUE)
+    sampled_data <- data.frame(data_continuous_sampled, data_factor_sampled, stringsAsFactors = TRUE, check.names = FALSE)
     # reordering cols
     sampled_data <- sampled_data[, names(x)]
   } else sampled_data <- data_continuous_sampled

@@ -4,8 +4,15 @@
 \alias{similarity_buffer}
 \title{Gower similarity analysis}
 \usage{
-similarity_buffer(covs, pts, buffer, fac = NA, metric = "gower",
-  stand = FALSE, ...)
+similarity_buffer(
+  covs,
+  pts,
+  buffer,
+  fac = NA,
+  metric = "gower",
+  stand = FALSE,
+  ...
+)
 }
 \arguments{
 \item{covs}{raster stack of environmental covariates}
@@ -20,7 +27,7 @@ similarity_buffer(covs, pts, buffer, fac = NA, metric = "gower",
 
 \item{stand}{logical flag: if TRUE, then the measurements in x are standardized before calculating the dissimilarities.}
 
-\item{...}{passed to plyr::alply}
+\item{...}{passed to plyr::llply}
 }
 \value{
 a RasterStack
@@ -40,8 +47,8 @@ ms <- stack(meuse.grid)
 
 suppressWarnings(RNGversion("3.5.0"))
 set.seed(1)
-pts <- clhs(ms, size = 3, iter = 100, progress = FALSE, simple = TRUE)
-gw <- similarity_buffer(ms, pts, buffer = 500)
+pts <- clhs(ms, size = 3, iter = 100, progress = FALSE, simple = FALSE)
+gw <- similarity_buffer(ms, pts$sampled_data, buffer = 500)
 plot(gw)
 
 }
