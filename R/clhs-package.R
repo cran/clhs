@@ -42,6 +42,8 @@
 #' sampling spot... can I sample nearby? Pedometron, 37:8--10. 
 #' 
 #' @keywords sampling 
+#' @import Rcpp 
+#' @useDynLib clhs
 #' 
 NULL
 

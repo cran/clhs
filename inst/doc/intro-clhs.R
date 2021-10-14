@@ -10,7 +10,7 @@ nrow(diamonds)
 
 ## ----simple_clhs, echo=TRUE, eval=TRUE----------------------------------------
 library(clhs)
-res <- clhs(diamonds, size = 100, progress = FALSE, iter = 1000)
+res <- clhs(diamonds, size = 100, use.cpp = TRUE)
 str(res)
 
 ## ----existing_samples, echo=TRUE, eval=TRUE-----------------------------------
@@ -30,9 +30,7 @@ existing_samples <- data.frame(
 res <- clhs(
   x = rbind(existing_samples, candidates_samples), 
   size = 10, 
-  iter = 100, 
-  include = 1:5, 
-  progress = FALSE
+  include = 1:5
 )
 
 ## ----plot_mandatory_1, echo=FALSE, fig=TRUE, fig.height=6, fig.width=6--------
@@ -65,11 +63,11 @@ diamonds$cost <- runif(nrow(diamonds))
 res_cost <- clhs(diamonds, size = 100, progress = FALSE, iter = 1000, cost = 'cost')
 
 ## ----plot_clhs_1, echo=TRUE, fig=TRUE, fig.height=8, fig.width=8--------------
-res <- clhs(diamonds, size = 100, simple = FALSE, progress = FALSE, iter = 1000)
-plot(res)
+res <- clhs(diamonds, size = 100,cost = "cost", simple = FALSE, progress = FALSE, iter = 2000)
+plot(res,c("obj","cost"))
 
 ## ----plot_clhs_3, echo=TRUE, fig=TRUE, fig.height=8, fig.width=12-------------
-res_cost <- clhs(diamonds, size = 100, progress = FALSE, iter = 1000, cost = 'cost', simple = FALSE)
+res_cost <- clhs(diamonds, size = 100, progress = FALSE, iter = 1000, cost = 'cost', simple = FALSE, use.cpp = F)
 plot(res_cost, c('obj', 'cost'))
 
 ## ----plot_clhs_4, echo=TRUE, fig=TRUE, fig.height=8, fig.width=12, warning=FALSE----

@@ -1,5 +1,16 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+- Fixed slow example in the plot docs
+- fixed the way RcppAramadillo dependecny is handled so to pass CRAN tests
+- added Rcpp and RcppArmadillo dependencies
+- Added C++ implementation (much faster!)
+
+
+# clhs 0.8.1.9000
+
+- Same as previous version.
+
+
 # clhs 0.8.1
 
 - the behaviour of the `simple` option is now more consistent for spatial objects
